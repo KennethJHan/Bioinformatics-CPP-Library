@@ -9,4 +9,5 @@ void complement_dna(std::string &str);
 double calc_gc(std::string &str);
 int calc_hamming_distance(std::string &str1, std::string &str2);
 std::string &translate_rna_to_protein(std::string &str);
+std::map<char, double> get_amino_acid_mass_table();
 #endif
