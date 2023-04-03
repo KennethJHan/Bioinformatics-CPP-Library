@@ -75,25 +75,25 @@ std::string &translate_rna_to_protein(std::string &str) {
 
 std::map<char, double> get_amino_acid_mass_table() {
     std::map<char, double> amino_acid_mass_table;
-    amino_acid_mass_table['A'] = 89.09;
-    amino_acid_mass_table['R'] = 174.20;
-    amino_acid_mass_table['N'] = 132.12;
-    amino_acid_mass_table['D'] = 133.10;
-    amino_acid_mass_table['C'] = 121.16;
-    amino_acid_mass_table['Q'] = 146.15;
-    amino_acid_mass_table['E'] = 147.13;
-    amino_acid_mass_table['G'] = 75.07;
-    amino_acid_mass_table['H'] = 155.16;
-    amino_acid_mass_table['I'] = 131.17;
-    amino_acid_mass_table['L'] = 131.17;
-    amino_acid_mass_table['K'] = 146.19;
-    amino_acid_mass_table['M'] = 149.21;
-    amino_acid_mass_table['F'] = 165.19;
-    amino_acid_mass_table['P'] = 115.13;
-    amino_acid_mass_table['S'] = 105.09;
-    amino_acid_mass_table['T'] = 119.12;
-    amino_acid_mass_table['W'] = 204.23;
-    amino_acid_mass_table['Y'] = 181.19;
-    amino_acid_mass_table['V'] = 117.15;
+    amino_acid_mass_table['A'] = 71.03711;
+    amino_acid_mass_table['R'] = 156.10111;
+    amino_acid_mass_table['N'] = 114.04293;
+    amino_acid_mass_table['D'] = 115.02694;
+    amino_acid_mass_table['C'] = 103.00919;
+    amino_acid_mass_table['Q'] = 128.05858;
+    amino_acid_mass_table['E'] = 129.04259;
+    amino_acid_mass_table['G'] = 57.02146;
+    amino_acid_mass_table['H'] = 137.05891;
+    amino_acid_mass_table['I'] = 113.08406;
+    amino_acid_mass_table['L'] = 113.08406;
+    amino_acid_mass_table['K'] = 128.09496;
+    amino_acid_mass_table['M'] = 131.04049;
+    amino_acid_mass_table['F'] = 147.06841;
+    amino_acid_mass_table['P'] = 97.05276;
+    amino_acid_mass_table['S'] = 87.03203;
+    amino_acid_mass_table['T'] = 101.04768;
+    amino_acid_mass_table['W'] = 186.07931;
+    amino_acid_mass_table['Y'] = 163.06333;
+    amino_acid_mass_table['V'] = 99.06841;
     return amino_acid_mass_table;
 }
