@@ -97,3 +97,31 @@ std::map<char, double> get_amino_acid_mass_table() {
     amino_acid_mass_table['V'] = 99.06841;
     return amino_acid_mass_table;
 }
+
+std::unordered_map<char, std::vector<std::string>>
+get_amino_acid_to_codon_table() {
+    std::unordered_map<char, std::vector<std::string>> codon_table = {
+        {'A', {"GCT", "GCC", "GCA", "GCG"}},
+        {'R', {"CGT", "CGC", "CGA", "CGG", "AGA", "AGG"}},
+        {'N', {"AAT", "AAC"}},
+        {'D', {"GAT", "GAC"}},
+        {'C', {"TGT", "TGC"}},
+        {'Q', {"CAA", "CAG"}},
+        {'E', {"GAA", "GAG"}},
+        {'G', {"GGT", "GGC", "GGA", "GGG"}},
+        {'H', {"CAT", "CAC"}},
+        {'I', {"ATT", "ATC", "ATA"}},
+        {'L', {"TTA", "TTG", "CTT", "CTC", "CTA", "CTG"}},
+        {'K', {"AAA", "AAG"}},
+        {'M', {"ATG"}},
+        {'F', {"TTT", "TTC"}},
+        {'P', {"CCT", "CCC", "CCA", "CCG"}},
+        {'S', {"TCT", "TCC", "TCA", "TCG", "AGT", "AGC"}},
+        {'T', {"ACT", "ACC", "ACA", "ACG"}},
+        {'W', {"TGG"}},
+        {'Y', {"TAT", "TAC"}},
+        {'V', {"GTT", "GTC", "GTA", "GTG"}},
+        {'*', {"TAA", "TAG", "TGA"}}};
+
+    return codon_table;
+}
