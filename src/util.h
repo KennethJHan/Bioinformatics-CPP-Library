@@ -14,4 +14,5 @@ std::string &translate_rna_to_protein(std::string &str);
 std::map<char, double> get_amino_acid_mass_table();
 std::unordered_map<char, std::vector<std::string>>
 get_amino_acid_to_codon_table();
+void split(std::string &s, std::string delimiter, std::vector<std::string> &v);
 #endif

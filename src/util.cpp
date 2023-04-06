@@ -125,3 +125,14 @@ get_amino_acid_to_codon_table() {
 
     return codon_table;
 }
+
+void split(std::string &s, std::string delimiter, std::vector<std::string> &v) {
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        v.push_back(token);
+        s.erase(0, pos + delimiter.length());
+    }
+    v.push_back(s);
+}
