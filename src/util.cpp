@@ -136,3 +136,78 @@ void split(std::string &s, std::string delimiter, std::vector<std::string> &v) {
     }
     v.push_back(s);
 }
+
+void read_fasta(std::string filepath, std::map<std::string, std::string> &m) {
+    std::ifstream ifs(filepath);
+    if (ifs.is_open()) {
+        std::string line, header;
+        bool is_content = false;
+        while (std::getline(ifs, line)) {
+            if (line[0] == '>') {
+                header = line;
+                m[header] = "";
+            } else {
+                m[header] += line;
+            }
+        }
+    }
+    ifs.close();
+}
+
+void convert_dna_strings_to_profile(
+    std::vector<std::string> &v,
+    std::vector<std::vector<int>> &profile_matrix) {
+    // Initialize
+    for (int i = 0; i < v[0].size(); i++) {
+        profile_matrix[0].push_back(0);
+        profile_matrix[1].push_back(0);
+        profile_matrix[2].push_back(0);
+        profile_matrix[3].push_back(0);
+    }
+    // Add base
+    for (int i = 0; i < v.size(); i++) {
+        for (int j = 0; j < v[0].size(); j++) {
+            char elem = v[i][j];
+            if (elem == 'A')
+                profile_matrix[0][j] += 1;
+            if (elem == 'C')
+                profile_matrix[1][j] += 1;
+            if (elem == 'G')
+                profile_matrix[2][j] += 1;
+            if (elem == 'T')
+                profile_matrix[3][j] += 1;
+        }
+    }
+}
+
+void print_dna_profile_matrix(std::vector<std::vector<int>> &profile_matrix) {
+    // A, C, G, T order.
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < profile_matrix[i].size(); j++) {
+            std::cout << profile_matrix[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
+void make_consensus_sequence_from_dna_profile_matrix(
+    std::vector<std::vector<int>> &profile_matrix,
+    std::string &consensus_sequence) {
+    for (int i = 0; i < profile_matrix[0].size(); i++) {
+        char max_char = 'A';
+        int max_val = profile_matrix[0][i];
+        if (profile_matrix[1][i] > max_val) {
+            max_char = 'C';
+            max_val = profile_matrix[1][i];
+        }
+        if (profile_matrix[2][i] > max_val) {
+            max_char = 'G';
+            max_val = profile_matrix[2][i];
+        }
+        if (profile_matrix[3][i] > max_val) {
+            max_char = 'T';
+            max_val = profile_matrix[3][i];
+        }
+        consensus_sequence += max_char;
+    }
+}
