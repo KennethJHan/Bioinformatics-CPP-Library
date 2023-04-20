@@ -73,6 +73,33 @@ std::string &translate_rna_to_protein(std::string &str) {
     return ptn;
 }
 
+std::string &translate_dna_to_protein(std::string &str) {
+    std::map<std::string, std::string> codon_table = {
+        {"TTT", "F"}, {"TTC", "F"}, {"TTA", "L"}, {"TTG", "L"}, {"CTT", "L"},
+        {"CTC", "L"}, {"CTA", "L"}, {"CTG", "L"}, {"ATT", "I"}, {"ATC", "I"},
+        {"ATA", "I"}, {"ATG", "M"}, {"GTT", "V"}, {"GTC", "V"}, {"GTA", "V"},
+        {"GTG", "V"}, {"TCT", "S"}, {"TCC", "S"}, {"TCA", "S"}, {"TCG", "S"},
+        {"CCT", "P"}, {"CCC", "P"}, {"CCA", "P"}, {"CCG", "P"}, {"ACT", "T"},
+        {"ACC", "T"}, {"ACA", "T"}, {"ACG", "T"}, {"GCT", "A"}, {"GCC", "A"},
+        {"GCA", "A"}, {"GCG", "A"}, {"TAT", "Y"}, {"TAC", "Y"}, {"TAA", "*"},
+        {"TAG", "*"}, {"CAT", "H"}, {"CAC", "H"}, {"CAA", "Q"}, {"CAG", "Q"},
+        {"AAT", "N"}, {"AAC", "N"}, {"AAA", "K"}, {"AAG", "K"}, {"GAT", "D"},
+        {"GAC", "D"}, {"GAA", "E"}, {"GAG", "E"}, {"TGT", "C"}, {"TGC", "C"},
+        {"TGA", "*"}, {"TGG", "W"}, {"CGT", "R"}, {"CGC", "R"}, {"CGA", "R"},
+        {"CGG", "R"}, {"AGT", "S"}, {"AGC", "S"}, {"AGA", "R"}, {"AGG", "R"},
+        {"GGT", "G"}, {"GGC", "G"}, {"GGA", "G"}, {"GGG", "G"}};
+    std::string ptn = "";
+    std::string codon;
+    for (int i = 0; i < str.size(); i += 3) {
+        codon = str.substr(i, 3);
+        if (codon_table.find(codon) != codon_table.end())
+            ptn += codon_table[codon];
+        else
+            ptn += "-";
+    }
+    return ptn;
+}
+
 std::map<char, double> get_amino_acid_mass_table() {
     std::map<char, double> amino_acid_mass_table;
     amino_acid_mass_table['A'] = 71.03711;
@@ -210,4 +237,28 @@ void make_consensus_sequence_from_dna_profile_matrix(
         }
         consensus_sequence += max_char;
     }
+}
+
+bool check_palindrome(const std::string &s) {
+    int len = s.length();
+    for (int i = 0; i < len / 2; i++) {
+        if (s[i] != s[len - i - 1])
+            return false;
+    }
+    return true;
+}
+
+bool check_reverse_complement(const std::string &s) {
+    std::map<char, char> base_map = {
+        {'A', 'T'},
+        {'C', 'G'},
+        {'G', 'C'},
+        {'T', 'A'},
+    };
+    int len = s.length();
+    for (int i = 0; i < len / 2; i++) {
+        if (s[i] != base_map[s[len - i - 1]])
+            return false;
+    }
+    return true;
 }

@@ -13,6 +13,7 @@ void complement_dna(std::string &str);
 double calc_gc(std::string &str);
 int calc_hamming_distance(std::string &str1, std::string &str2);
 std::string &translate_rna_to_protein(std::string &str);
+std::string &translate_dna_to_protein(std::string &str);
 std::map<char, double> get_amino_acid_mass_table();
 std::unordered_map<char, std::vector<std::string>>
 get_amino_acid_to_codon_table();
@@ -24,4 +25,6 @@ void print_dna_profile_matrix(std::vector<std::vector<int>> &profile_matrix);
 void make_consensus_sequence_from_dna_profile_matrix(
     std::vector<std::vector<int>> &profile_matrix,
     std::string &consensus_sequence);
+bool check_palindrome(const std::string &s);
+bool check_reverse_complement(const std::string &s);
 #endif
